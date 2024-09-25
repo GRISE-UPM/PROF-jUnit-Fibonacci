@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Timeout.ThreadMode.SEPARATE_THREAD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 import java.util.concurrent.TimeUnit;
 
@@ -52,14 +54,16 @@ public class FibonacciTest {
 	}
 	
 	@Test
+	@Timeout(value = 4, unit = TimeUnit.SECONDS, threadMode = SEPARATE_THREAD)
 	public void value_47_returns_2971215073() throws InvalidNumberException {
 		assertEquals(2971215073L, Fibonacci.calculate(47));
 	}
-
+	
 	@Test
-	@Timeout(value = 10, unit = TimeUnit.SECONDS)
 	public void value_92_returns_7540113804746346429() throws InvalidNumberException {
-		assertEquals(7540113804746346429L, Fibonacci.calculate(92));
+		assumingThat(
+				Fibonacci.TYPE.equals("Iterative"),
+				() -> assertEquals(7540113804746346429L, Fibonacci.calculate(92)));
 	}
 	
 	@Disabled

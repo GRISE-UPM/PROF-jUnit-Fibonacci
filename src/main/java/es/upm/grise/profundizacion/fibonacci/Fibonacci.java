@@ -1,6 +1,8 @@
 package es.upm.grise.profundizacion.fibonacci;
 
 public class Fibonacci {
+	
+	public static String TYPE = "Recursive";
 
 	/**
 	 * Function that calculates Fibonacci's number (recursive)

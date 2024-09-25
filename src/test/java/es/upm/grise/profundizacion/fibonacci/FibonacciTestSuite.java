@@ -5,5 +5,4 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @SelectClasses(FibonacciTest.class)
-// Need to rename TestXXX
 public class FibonacciTestSuite {}
